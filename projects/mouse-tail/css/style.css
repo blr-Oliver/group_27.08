@@ -1,0 +1,20 @@
+body {
+	background: grey;
+}
+
+#display {
+	width: 100%;
+	height: 100%;
+	background: #f1f1f1;
+	position: relative; 
+}
+
+.segment {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: red;
+	position: absolute;
+	left: ;
+	top: ;
+}
