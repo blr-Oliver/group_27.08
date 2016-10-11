@@ -8,3 +8,15 @@ function createSegment(x, y){
 	displayObject.appendChild(segment);
 	return segment;
 }
+
+function registerDie (segment) {
+	setTimeout(removeSegment, 1000, segment);
+}
+
+function removeSegment (segment) {
+	var index = segments.indexOf(segment);
+	if(index != -1){
+		segment.remove();
+		segments.splice(index, 1);
+	}
+}
