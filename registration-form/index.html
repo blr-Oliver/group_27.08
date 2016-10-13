@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form class="col-xs-8 col-xs-offset-2 form-horizontal">
+	<div class="form-group">
+		<label for="name" class="col-md-2 control-label">Имя</label>
+		<div class="col-md-10">
+			<input class="form-control" id="name" name="name"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="surname" class="col-md-2 control-label">Фамилия</label>
+		<div class="col-md-10">
+			<input class="form-control" id="surname" name="surname"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email" class="col-md-2 control-label">E-mail</label>
+		<div class="col-md-10">
+			<input type="email" class="form-control" id="email" name="email"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">Пол</label>
+		<div class="col-md-10">
+			<label class="radio-inline">
+  				<input type="radio" name="gender" value="male"> Мужской
+  			</label>
+			<label class="radio-inline">
+  				<input type="radio" name="gender" value="female"> Женский
+  			</label>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="password" class="col-md-2 control-label">Пароль</label>
+		<div class="col-md-10">
+			<input type="password" class="form-control" id="password" name="password"/>
+			<span class="help-block"><i class="glyphicon glyphicon-info-sign text-info"></i> Пароль должен содержать как минимум 6 символов, из них хотя бы 1 цифру и одну букву</span>
+		</div>
+	</div>
+	<div class="form-group has-success">
+		<label for="pass-repeat" class="col-md-2 control-label">Подтвердить</label>
+		<div class="col-md-10">
+			<div class="input-group">
+				<input type="password" class="form-control" id="pass-repeat" />
+				<span class="input-group-addon"><i class="glyphicon glyphicon-ok-sign text-success"></i></span>
+			</div>
+			
+		</div>
+	</div>
+	<div class="form-group has-error">
+		<div class="col-md-10 col-sm-offset-2">
+			<label class="checkbox-inline">
+  				<input type="checkbox" name="policy" value="yes"> Я согласен с условиями использования
+  			</label>
+		</div>
+	</div>
+	<div class="form-group text-center">
+		<div class="btn-group">
+		  <button type="button" class="btn btn-success btn-lg">Готово</button>
+		  <button type="button" class="btn btn-success btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    <span class="caret"></span>
+		    <span class="sr-only">Toggle Dropdown</span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a href="#">Я босс</a></li>
+		  </ul>
+		</div>	
+	</div>
+	</form>
+
+</body>
+</html>
