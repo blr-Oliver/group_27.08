@@ -1,0 +1,18 @@
+function MouseSpeedTracker(intervalTime) {
+	this.first = null;
+	this.second = null;
+	this.intervalTime = intervalTime || 20;
+}
+
+MouseSpeedTracker.prototype = {
+	onmousemove: function(event) {  // обработка событий
+
+
+	},
+	installhandler: function() {   // установить обработчик
+		document.addEventListener('mousemove', this.onmousemove.bind(this));
+	},
+	getspeed: function() {
+
+	}
+}
