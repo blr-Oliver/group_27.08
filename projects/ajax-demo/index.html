@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>AJAX Demo</title>
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/style.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/ajax-demo.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="page-header">
+        <h1>AJAX Demo</h1>
+      </div>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#fragment-loading" data-toggle="tab">Fragment loading</a></li>
+        <li><a href="#lazy-tabs" data-toggle="tab">Lazy tabs</a></li>
+        <li><a href="#json-loading" data-toggle="tab">JSON loading</a></li>
+      </ul>
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="fragment-loading">
+          <h2>Explicitly load fragment</h2>
+          <button class="btn btn-success btn-lg" id="load-fragment">Load</button>
+          <hr />
+          <div id="fragment-area"></div>
+        </div>
+
+        <div class="tab-pane" id="lazy-tabs">
+          <h2>Lazy tab loading</h2>
+          <div class="col-xs-12">
+            <ul class="nav nav-tabs">
+              <li><a href="#lazy-1" data-toggle="tab" data-template="/person/1.html">1.html</a></li>
+              <li><a href="#lazy-2" data-toggle="tab" data-template="/person/2.html">2.html</a></li>
+              <li><a href="#lazy-4" data-toggle="tab" data-template="/person/4.html">4.html</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="lazy-1">
+                <h3>Not loaded</h3>
+              </div>
+              <div class="tab-pane" id="lazy-2">
+                <h3>Not loaded</h3>
+              </div>
+              <div class="tab-pane" id="lazy-4">
+                <h3>Not loaded</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="json-loading">
+          <h2>JSON loading + request abort (bonus)</h2>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              Programming languages and their authors <a class="load-json" role="button"><i class="text-primary glyphicon glyphicon-refresh"></i></a>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 col-md-4">
+                <ul class="hidden" id="list-item-template">
+                  <li class="list-group-item json-item"><img data-marker="image" src="/person/img/java.gif" class="img-thumbnail" data-item-id="0" />
+                    <div class="info-block">
+                      <h3 data-marker="language">Language</h3>
+                      <p>
+                        Author is <span data-marker="name">Name</span> <span data-marker="surname">Surname</span>
+                      </p>
+                    </div></li>
+                </ul>
+                <ul class="list-group" id="json-list-container">
+                  <li class="list-group-item">No content loaded</li>
+                </ul>
+              </div>
+              <div class="col-xs-6 col-md-8" id="details"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
