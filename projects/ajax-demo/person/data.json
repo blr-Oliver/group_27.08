@@ -1,0 +1,25 @@
+[{
+  "id": 1,
+  "language": "C++",
+  "author": {
+    "name": "Bjarne",
+    "surname": "Stroustrup"
+  },
+  "image": "/person/img/cpp.png"
+}, {
+  "id": 2,
+  "language": "Java",
+  "author": {
+    "name": "James",
+    "surname": "Gosling"
+  },
+  "image": "/person/img/java.gif"
+}, {
+  "id": 4,
+  "language": "javascript",
+  "author": {
+    "name": "Brendan",
+    "surname": "Eich"
+  },
+  "image": "/person/img/js.png"
+}]
