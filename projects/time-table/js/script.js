@@ -10,4 +10,18 @@ angular.module('timeTable',[]).controller('TimeTableController', function ($scop
 	$scope.refresh = function () {
 		
 	}
+	
+	
+	// выборка
+	$scope.dataArray = [];
+	dataArray = data.map( function(currentValue, index, array) {
+		for(var i = 0; i < currentValue.time.length; i++) {
+			if(currentValue.time[i] >= currentTime) {
+				var counter = i;
+				break;
+			}
+		}
+		currentValue.time.slice(counter, counter + 2);
+	});
+
 });
