@@ -50,10 +50,10 @@ function sort(dataArray){
 				}
 			}
 		}
-	})
+	}) 
 	dataArray.map(function(currentValue, index, array){
 		return currentValue.time.map(function(cV, i, arr){
-			return cV = cV % 60;
+			return cV = cV - currentTime; //Время до прихода транспорта относительно текущего времени.
 		})
 	})
 	return dataArray;
