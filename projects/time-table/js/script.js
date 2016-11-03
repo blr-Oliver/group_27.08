@@ -56,5 +56,5 @@ function sort(dataArray){
 			return cV = cV % 60;
 		})
 	})
-	return data;
+	return dataArray;
 }
