@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8"/>
+    	<title>Time Table</title>
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script> 	
+    	<style>
+    	
+    	</style>
+    	
+	</head>
+
+	<body ng-app="timeTable" ng-controller="TimeTableController">
+    	
+    	<table class="table table-striped">
+ 			<!--
+ 			<tr>
+ 				<th> Тип </th>
+ 				<th> Номер </th>
+ 				<th> Маршрут </th>
+ 				<th> Ближайшее прибытие </th>
+ 				<th> Следующее прибитие </th>
+ 			</tr>
+ 			-->
+ 			<tr ng-repeat="row in tableContent">
+ 				<td ng-bind="row.type"> </td>
+ 				<td ng-bind="row.number"> </td>
+ 				<td ng-bind="row.route"> </td>
+ 				<td ng-bind="row.time1"> </td>
+ 				<td ng-bind="row.time2"> </td>
+ 			</tr>
+		</table>
+
+
+
+    	<script src="script.js"></script>
+	</body>
+</html>
