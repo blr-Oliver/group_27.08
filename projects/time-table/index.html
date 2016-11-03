@@ -14,7 +14,8 @@
 	</head>
 
 	<body ng-app="timeTable" ng-controller="TimeTableController">
-    	
+    	<input type="text" placeholder="Enter time..." ng-model = "timeTable"/>
+	<button class="btn btn-lg btn-success" ng-click="refresh()">Refresh</button>
     	<table class="table table-striped">
  			<!--
  			<tr>
