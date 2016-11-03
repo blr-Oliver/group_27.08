@@ -1,12 +1,12 @@
 [
-  {"type" : "Т", "number": "12", "route": "пл. Бангалор", time: []},
-  {"type" : "Т", "number": "29", "route": "ДС Калиновского", time: []},
-  {"type" : "Т", "number": "37", "route": "ДС Уручье-4", time: []},
-  {"type" : "Т", "number": "40", "route": "ДС Карастояновой", time: []},
-  {"type" : "Т", "number": "46", "route": "ДС Зеленый Луг", time: []},
-  {"type" : "Т", "number": "53", "route": "ДС Зеленый Луг", time: []},
-  {"type" : "А", "number": "24", "route": "ДС Зеленый Луг", time: []},
-  {"type" : "А", "number": "38", "route": "ДС Карастояновой", time: []},
-  {"type" : "А", "number": "57", "route": "ДС Восточная", time: []},
-  {"type" : "А", "number": "91", "route": "ДС Калиновского", time: []} 
+  {"type" : "Т", "number": "12", "route": "пл. Бангалор", "time": []},
+  {"type" : "Т", "number": "29", "route": "ДС Калиновского", "time": []},
+  {"type" : "Т", "number": "37", "route": "ДС Уручье-4", "time": []},
+  {"type" : "Т", "number": "40", "route": "ДС Карастояновой", "time": []},
+  {"type" : "Т", "number": "46", "route": "ДС Зеленый Луг", "time": []},
+  {"type" : "Т", "number": "53", "route": "ДС Зеленый Луг", "time": []},
+  {"type" : "А", "number": "24", "route": "ДС Зеленый Луг", "time": []},
+  {"type" : "А", "number": "38", "route": "ДС Карастояновой", "time": []},
+  {"type" : "А", "number": "57", "route": "ДС Восточная", "time": []},
+  {"type" : "А", "number": "91", "route": "ДС Калиновского", "time": []} 
 ]
