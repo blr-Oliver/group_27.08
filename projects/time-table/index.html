@@ -8,7 +8,21 @@
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script> 	
     	<style>
-    	
+    		table {
+    			font-size:25px;
+    		}
+			.bus-type, .number{
+				font-weight: bold;
+			}
+			.route {
+				font-style: italic;
+			}	
+			.time1 {
+				color:red;
+			}
+			.time2 {
+				color: blue;
+			}
     	</style>
     	
 	</head>
@@ -27,13 +41,13 @@
  			</tr>
  			-->
  			<tr ng-repeat="row in tableContent">
- 				<td ng-bind="row.type"> </td>
- 				<td ng-bind="row.number"> </td>
- 				<td ng-bind="row.route"> </td>
- 				<td ng-bind="row.time1"> </td>
- 				<td ng-bind="row.time2"> </td>
+ 				<td ng-bind="row.type" class="bus-type"> </td>
+ 				<td ng-bind="row.number" class="number"> </td>
+ 				<td ng-bind="row.route" class="route"> </td>
+ 				<td ng-bind="row.time1" class="time1"> </td>
+ 				<td ng-bind="row.time2" class="time2"> </td>
  			</tr>
-		</table>
+	</table>
 
 
 
