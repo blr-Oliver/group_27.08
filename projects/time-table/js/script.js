@@ -25,3 +25,36 @@ angular.module('timeTable',[]).controller('TimeTableController', function ($scop
 	});
 
 });
+
+//Функция сортировки!
+function sort(dataArray){
+	dataArray.sort(function (first, second){
+		if (first.time[0] > second.time[0]){
+			return 1;
+		}
+		if (first.time[0] < second.time[0]){
+			return -1;
+		}
+		if (first.time[0] == second.time[0]){
+			if (+first.number > +second.number){
+				return 1;
+			}
+			if (+first.number < +second.number){
+				return -1;
+			}
+			if (first.number == second.number){
+				if (first.type > second.type){
+					return 1;
+				}else{
+					return -1;
+				}
+			}
+		}
+	})
+	dataArray.map(function(currentValue, index, array){
+		return currentValue.time.map(function(cV, i, arr){
+			return cV = cV % 60;
+		})
+	})
+	return data;
+}
