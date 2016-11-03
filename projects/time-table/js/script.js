@@ -4,8 +4,8 @@ angular.module('timeTable',[]).controller('TimeTableController', function ($scop
 	type: 	'T',
 	number: '53',
 	route: 	'зеленый луг',
-	time1:	'5',
-	time2:	'15'	
+	time1:	5,
+	time2:	15	
 	}];
 	$scope.refresh = function () {
 		
