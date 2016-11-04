@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html>
-	<head>
-    	<meta charset="utf-8"/>
-    	<title>Time Table</title>
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script> 	
-    	<style>
-    		table {
-    			font-size:25px;
-    		}
-			.bus-type, .number{
-				font-weight: bold;
-			}
-			.route {
-				font-style: italic;
-			}	
-			.time1 {
-				color:red;
-			}
-			.time2 {
-				color: blue;
-			}
-    	</style>
-    	
-	</head>
+<head>
+<meta charset="utf-8" />
+<!-- закрываем одиночные теги (meta, link, input, ...), даже если этого можно не делать -->
+<!--
+  основное (ключевое) содержимое страницы - собственно расписание, и оно на русском;
+  позаботьтесь о том, чтобы язык на странице был один и соответствовал ключевой части  
+-->
+<title>Интерактивное расписание</title>
 
-	<body ng-app="timeTable" ng-controller="TimeTableController">
-    	<input type="text" placeholder="Enter time..." ng-model = "timeTable"/>
-	<button class="btn btn-lg btn-success" ng-click="refresh()">Refresh</button>
-    	<table class="table table-striped">
- 			<!--
- 			<tr>
- 				<th> Тип </th>
- 				<th> Номер </th>
- 				<th> Маршрут </th>
- 				<th> Ближайшее прибытие </th>
- 				<th> Следующее прибитие </th>
- 			</tr>
- 			-->
- 			<tr ng-repeat="row in tableContent">
- 				<td ng-bind="row.type" class="bus-type"> </td>
- 				<td ng-bind="row.number" class="number"> </td>
- 				<td ng-bind="row.route" class="route"> </td>
- 				<td ng-bind="row.time1" class="time1"> </td>
- 				<td ng-bind="row.time2" class="time2"> </td>
- 			</tr>
-	</table>
+<!-- порядок подключения ресурсов:
+ сначала стили, потом (если есть) фрагменты, потом скрипты
+ в каждой категории сначала значимые, потом незначимые
+ для скриптов сначала независимые, затем зависящие 
+-->
 
+<!-- не жадничаем явно прописать MIME -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!--
+  тег <style> есть смысл использовать, если хотим ограничиться единственным файлом,
+  а здесь и так уже несколько ресурсов - выносим CSS отдельно
+-->
+<!-- по возможности используем абсолютные пути -->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 
+<!-- jQuery идет ПЕРЕД angular -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+<!-- без крайней необходимости из заголовка скрипты не вынимаем -->
+<script type="text/javascript" src="/js/loader.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+<!-- скрипты bootstrap всегда вторичны и должны идти ПОСЛЕ jquery -->
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-    	<script src="js/script.js"></script>
-	</body>
+<body ng-app="timeTable" ng-controller="TimeTableController">
+  <!-- ng-model должно указвать на изменяемое свойство -->
+  <!-- не поленимся задать формат и границы -->
+  <input type="number" placeholder="Текущее время" ng-model="currentTime" min="0" max="1440" />
+  <button class="btn btn-lg btn-success" ng-click="refresh()">Refresh</button>
+  <table class="table table-striped timetable">
+    <!--
+    если содержимое говорит сомо за себя, подписи не нужны
+	<tr>
+		<th> Тип </th>
+		<th> Номер </th>
+		<th> Маршрут </th>
+		<th> Ближайшее прибытие </th>
+		<th> Следующее прибитие </th>
+	</tr>
+-->
+    <tbody>
+      <tr ng-repeat="row in tableContent">
+        <td ng-bind="row.type" class="bus-type"></td>
+        <td ng-bind="row.number" class="number"></td>
+        <td ng-bind="row.route" class="route"></td>
+        <td ng-bind="row.time1" class="time1"></td>
+        <td ng-bind="row.time2" class="time2"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
 </html>
