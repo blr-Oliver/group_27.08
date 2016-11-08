@@ -77,6 +77,8 @@ angular.module('timeTable', ['resourceLoader']) //использеум втор�
       */
       if (isNaN(currentValue.time1)){ // Чтобы не выводило NaN
         currentValue.time1 = "Wait for tomorrow";
+      }
+      if (isNaN(currentValue.time2)){ // Чтобы не выводило NaN
         currentValue.time2 = "Wait for tomorrow";
       }
     })
