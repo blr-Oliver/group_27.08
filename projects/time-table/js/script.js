@@ -75,6 +75,10 @@ angular.module('timeTable', ['resourceLoader']) //использеум втор�
         return cV = cV - $scope.currentTime; //Время до прихода транспорта относительно текущего времени.
       })
       */
+      if (isNaN(currentValue.time1)){ // Чтобы не выводило NaN
+        currentValue.time1 = "Wait for tomorrow";
+        currentValue.time2 = "Wait for tomorrow";
+      }
     })
     return dataArray;
   }
