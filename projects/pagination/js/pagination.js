@@ -83,7 +83,22 @@ angular.module("pagination", []).component("pagination",
 		     }
 		     completedArray.push(this.createPage("arrow", 1, false, this.state.current == this.state.last));
 		     return completedArray;
-    	}
+    	},
+		this.selectPage = function (page){
+    			if (page > this.state.last) {
+    				this.state.current = this.state.last;
+    			}else{
+    				if (page < 1) {
+    					this.state.current = 1;
+    				}else{
+    					this.state.current = page;
+					$scope.pageItems = this.createPages()
+    				}
+			}
+		};
+			
+    	$scope.pageItems = this.createPages();
+		
     }],
 
 	bindings:{
