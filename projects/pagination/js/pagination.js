@@ -63,7 +63,7 @@ angular.module("pagination", []).component("pagination",
 			var completedArray = [];
 		     completedArray.push(this.createPage("arrow", -1, false, this.state.current == 1));
 		     if (this.state.current - 1 < 4){
-			 for(var i = 1; i <= 3; i++){
+			 for(var i = 1; i <= this.state.current - 1; i++){
 			     completedArray.push(this.createPage("number", i, false, false));
 			 }
 		     }else{
