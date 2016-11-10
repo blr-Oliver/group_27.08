@@ -2,6 +2,14 @@ angular.module("pagination", []).component("pagination",
 	{
 	templateUrl: "/pagination.html",
 	controller: ['$scope', function($scope){
+		this.createPage = function(type, value, active, disabled){
+			return {
+				type: type,
+				value: value,
+				active: active,
+				disabled: disabled
+			};
+		};
 		$scope.pageItems = [{
 				type: 'arrow',
 				value: -1,
