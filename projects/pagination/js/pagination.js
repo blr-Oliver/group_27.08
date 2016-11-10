@@ -2,25 +2,6 @@ angular.module("pagination", []).component("pagination",
 	{
 	templateUrl: "/pagination.html",
 	controller: ['$scope', function($scope){
-		this.createPage = function(type, value, active, disabled){
-			var page = {
-				type: type
-			};
-			switch(type) {
-				case "arrow": 
-					page.value = value;
-					page.disabled = disabled;
-					break;
-				case "number":
-					page.value = value;
-					page.active = active;
-					break;
-				case "dots":
-					page.disabled = disabled;
-
-			}
-			return page;
-		};
 		$scope.pageItems = [{
 				type: 'arrow',
 				value: -1,
@@ -57,9 +38,29 @@ angular.module("pagination", []).component("pagination",
 				disabled: false
 			}
 		];
-	},
-	     this.createPages = function(){
-		var completedArray = [];
+	
+		this.createPage = function(type, value, active, disabled){
+			var page = {
+				type: type
+			};
+			switch(type) {
+				case "arrow": 
+					page.value = value;
+					page.disabled = disabled;
+					break;
+				case "number":
+					page.value = value;
+					page.active = active;
+					break;
+				case "dots":
+					page.disabled = disabled;
+
+			}
+			return page;
+		};
+
+		this.createPages = function(){
+			var completedArray = [];
 		     completedArray.push(this.createPage("arrow", -1, false, this.state.current == 1));
 		     if (this.state.current - 1 < 4){
 			 for(var i = 1; i <= 3; i++){
@@ -83,5 +84,11 @@ angular.module("pagination", []).component("pagination",
 		     completedArray.push(this.createPage("arrow", 1, false, this.state.current == this.state.last));
 		     return completedArray;
     	}
-	]
+    }],
+
+	bindings:{
+		state: "="
+	},
+	
+	controllerAs: "$ctrl"
 });
