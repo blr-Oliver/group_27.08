@@ -1,27 +1,51 @@
-angular.module("primeShow", ["pagination"]).controller("PrimeShowController", ["$scope", "$http", function($scope, $http){
-    $scope.state = {
-        current: 6,
-        last: 20
-    },
-    $scope.$watch("state.current", function (newValue, oldValue, scope){
-       $http({
-        url: "http://192.168.0.104:8888",
-        method: "GET",
-        params: {
-            start: ($scope.state.current - 1) * 500,
-            end: $scope.state.current * 500},
-        header: {
-            Accept: "application.json"
-        }
-    }).then(function(response){
-        $scope.primeList = response.data;
-    })
-    }, false)
-}
-]);
+angular.module("primeShow", ["pagination"]).controller("PrimeShowController",
+ ["$scope", "primeLoader", function($scope, primeLoader){
+ 		$scope.state= {
+ 			current: 9 ,
+ 			last: 15
+ 		};
+ 		$scope.primeList = [];
 
+ 		$scope.$watch("state.current", function(newValue, oldValue, $scope){
+    		console.log(oldValue,'->',newValue)	;
+    		primeLoader(($scope.state.current-1)*50000, $scope.state.current*50000).then(function doneCallback(data){
+    			if(data)
+	    			$scope.primeList = data;
+	    		else
+	    			console.log('cancelled');
+    		});
 
+    	}, false);
+ 	}
+ ]).factory("primeLoader", ["$http","$q", function($http, $q){
+ 		var start, end, promise;
 
-//$q - promises
+ 		return function(x, y){
 
-//.then(doneCallback(response, statusCode), failCallback())
+ 			if(x == start && y == end) return promise;
+ 			
+ 			start = x;
+ 			end = y;
+
+ 			promise = $http({
+
+	    		url:"http://192.168.0.104:8888",
+	    		method:"GET",
+	    		params: {
+	    			start : x,
+	    			end : y
+	    		},
+	    		headers: { 
+	    			Accept: "application/json" //ожидаемый формат 
+	    		}
+    		}).then(function(response){
+    			var rParams = response.config.params;
+    			if(rParams.start == x  && rParams.end == y)
+    				return response.data;
+    			return [];
+    		});
+
+    		return promise;
+    	};
+ 	}
+ ]);
