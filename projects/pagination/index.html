@@ -13,7 +13,9 @@
 		</style>
 	</head>
 	<body ng-app="pagination">
-		
+		<ul>
+			<li ng-repeat="numbers in primeList" ng-bind="numbers"></li>
+		</ul>
 		<pagination></pagination>
 	</body>
 </html>
