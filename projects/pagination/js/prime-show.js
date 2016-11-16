@@ -1,51 +1,48 @@
 angular.module("primeShow", ["pagination"]).controller("PrimeShowController",
- ["$scope", "primeLoader", function($scope, primeLoader){
- 		$scope.state= {
- 			current: 9 ,
- 			last: 15
- 		};
- 		$scope.primeList = [];
+    ["$scope", "primeLoader", function($scope, primeLoader){
+      const pageSize = 500;
+      $scope.state = {
+        current: 9,
+        last: 15
+      };
+      $scope.primeList = [];
 
- 		$scope.$watch("state.current", function(newValue, oldValue, $scope){
-    		console.log(oldValue,'->',newValue)	;
-    		primeLoader(($scope.state.current-1)*50000, $scope.state.current*50000).then(function doneCallback(data){
-    			if(data)
-	    			$scope.primeList = data;
-	    		else
-	    			console.log('cancelled');
-    		});
+      $scope.$watch("state.current", function(newValue, oldValue, $scope){
+        primeLoader(($scope.state.current - 1) * pageSize, $scope.state.current * pageSize).then(function doneCallback(data){
+          console.log('SUCCESS', oldValue, '->', newValue);
+          $scope.primeList = data;
+        }, function failCallback(reason){
+          console.log('FAILED', '(' + reason + ')', oldValue, '->', newValue);
+        });
+      }, false);
+    }]).factory("primeLoader", ["$http", "$q", function($http, $q){
+  var start, end, ongoing, serverUrl = "http://localhost:8888";
 
-    	}, false);
- 	}
- ]).factory("primeLoader", ["$http","$q", function($http, $q){
- 		var start, end, promise;
+  return function(x, y){
+    if(x == start && y == end)
+      return task.promise;
+    start = x;
+    end = y;
+    if(ongoing)
+      ongoing.reject('cancelled by another request');
+    var task = ongoing = $q.defer();
+    $http({
+      url: serverUrl,
+      method: "GET",
+      params: {
+        start: start,
+        end: end
+      },
+      headers: {
+        Accept: "application/json" //ожидаемый формат 
+      }
+    }).then(function(response){
+      task.resolve(response.data);
+    }, function(){
+      start = end = ongoing = null;
+      task.reject(...arguments);
+    });
 
- 		return function(x, y){
-
- 			if(x == start && y == end) return promise;
- 			
- 			start = x;
- 			end = y;
-
- 			promise = $http({
-
-	    		url:"http://192.168.0.104:8888",
-	    		method:"GET",
-	    		params: {
-	    			start : x,
-	    			end : y
-	    		},
-	    		headers: { 
-	    			Accept: "application/json" //ожидаемый формат 
-	    		}
-    		}).then(function(response){
-    			var rParams = response.config.params;
-    			if(rParams.start == x  && rParams.end == y)
-    				return response.data;
-    			return [];
-    		});
-
-    		return promise;
-    	};
- 	}
- ]);
+    return task.promise;
+  };
+}]);
