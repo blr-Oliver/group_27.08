@@ -1,0 +1,13 @@
+svg .axis{
+	stroke-width: 0.5;
+	stroke: black;
+}
+svg .unit{
+	stroke-width: 0.3;
+	stroke: black;
+}
+
+svg .graph{
+	stroke-width: 1;
+	stroke: red;
+}
