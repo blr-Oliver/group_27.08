@@ -1,13 +1,21 @@
-svg .axis{
-	stroke-width: 0.5;
-	stroke: black;
-}
-svg .unit{
-	stroke-width: 0.3;
-	stroke: black;
+svg.linear-graph .axis {
+  stroke-width: 0.5;
+  stroke: black;
 }
 
-svg .graph{
-	stroke-width: 1;
-	stroke: red;
+svg.linear-graph .tick {
+  stroke-width: 0.3;
+  stroke: black;
+}
+
+svg.linear-graph .graph {
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-opacity: 0.7;
+}
+
+svg.linear-graph .plot-mark.major {
+  font-size: 130%;
+  font-weight: bold;
 }

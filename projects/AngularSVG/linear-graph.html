@@ -1,16 +1,22 @@
-<svg viewBox="0 0 100 100" width="300px" height="300px" font-size="3" font-weight="400">
-<g class="ox">
-	<line class="axis" x1="0" x2="97" ng-attr-y1="{{origin.y}}" ng-attr-y2="{{origin.y}}"/>
-	<path class="arrow" d="M 97 59 l 3 1 -3 1" />
-	<line class="unit" x1="40" x2="40" y1="59" y2="61" />
-	<text x="39" y="64">1</text>
-</g>
-<g class="oy">
-	<line class="axis" y1="3" y2="100" ng-attr-x1="{{origin.x}}" ng-attr-x2="{{origin.x}}"/>
-	<path class="arrow" d="M 29 3 l 1 -3 1 3" />
-	<line class="unit" x1="29" x2="31" y1="45" y2="45" />
-	<text x="26" y="46">1</text>
-</g>
-<text x="26" y="64">0</text>
-<path class="graph" d="M 10 40 L 30 50 70 60 80 30" fill="none"/>
+<svg class="linear-graph" viewBox="0 0 100 100" width="300px" font-size="3">
+  <g class="axis-group ox">
+    <line class="axis" x1="0" x2="97" ng-attr-y1="{{origin.y}}" ng-attr-y2="{{origin.y}}" />
+    <path class="arrow" ng-attr-d="M97 {{origin.y-1}}l3 1-3 1z" />
+    <text class="plot-mark major" x="95" ng-attr-y="{{origin.y+2}}" text-anchor="middle" dominant-baseline="hanging">X</text>
+    <g class="tick-group">
+      <line class="tick" ng-attr-x1="{{origin.x + unit.x*1}}" ng-attr-x2="{{origin.x + unit.x*1}}" ng-attr-y1="{{origin.y-1}}" ng-attr-y2="{{origin.y+1}}" />
+      <text class="plot-mark" ng-attr-x="{{origin.x + unit.x*1}}" ng-attr-y="{{origin.y+2}}" text-anchor="middle" dominant-baseline="hanging" ng-bind="1"></text>
+    </g>
+  </g>
+  <g class="axis-group oy">
+    <line class="axis" y1="3" y2="100" ng-attr-x1="{{origin.x}}" ng-attr-x2="{{origin.x}}" />
+    <path class="arrow" ng-attr-d="M{{origin.x-1}} 3l1-3 1 3z" />
+    <text class="plot-mark major" ng-attr-x="{{origin.x-2}}" y="5" text-anchor="end" dominant-baseline="middle">Y</text>
+    <g class="tick-group">
+      <line class="tick" ng-attr-x1="{{origin.x-1}}" ng-attr-x2="{{origin.x+1}}" ng-attr-y1="{{origin.y - unit.y*1}}" ng-attr-y2="{{origin.y - unit.y*1}}" />
+      <text class="plot-mark" ng-attr-x="{{origin.x-2}}" ng-attr-y="{{origin.y - unit.y*1}}" text-anchor="end" dominant-baseline="middle" ng-bind="1"></text>
+    </g>  
+  </g>
+  <text class="plot-mark major" ng-attr-x="{{origin.x-2}}" ng-attr-y="{{origin.y+2}}" text-anchor="end" dominant-baseline="hanging">0</text>
+  <path class="graph" d="M 10 40 L 30 50 70 60 80 30" fill="none" stroke="red"/>
 </svg>
