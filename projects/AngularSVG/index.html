@@ -8,11 +8,23 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
-<script src="/js/angular-svg-graph.js"></script>
+<script src="/js/svg-graph.js"></script>
+<script src="/js/graph-demo.js"></script>
+<style>
+#demo {
+  display: block;
+  max-width: 100%;
+  text-align: center;
+}
+
+#demo svg {
+  width: 800px;
+}
+</style>
 </head>
-<body ng-app="angularSVGGraph">
+<body ng-app="graphDemo" ng-controller="GraphDemoController as demo">
   <div>
-    <linear-graph></linear-graph>
+    <linear-graph id="demo" series-x="dataX" series-y="dataY"></linear-graph>
   </div>
 </body>
 </html>

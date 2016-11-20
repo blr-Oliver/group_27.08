@@ -1,21 +1,33 @@
-svg.linear-graph .axis {
+linear-graph {
+  display: inline-block;
+  line-height: 0px;
+}
+
+linear-graph svg {
+  display: inline;
+  width: 100%;
+  max-width: 100%;
+  font-size: 3px;
+}
+
+.linear-graph .axis {
   stroke-width: 0.5;
   stroke: black;
 }
 
-svg.linear-graph .tick {
+.linear-graph .tick {
   stroke-width: 0.3;
   stroke: black;
 }
 
-svg.linear-graph .graph {
+.linear-graph .graph {
   stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-opacity: 0.7;
 }
 
-svg.linear-graph .plot-mark.major {
+.linear-graph .plot-mark.major {
   font-size: 130%;
   font-weight: bold;
 }
