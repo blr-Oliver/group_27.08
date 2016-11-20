@@ -1,22 +1,22 @@
-<svg class="linear-graph" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-  <g class="axis-group ox">
-    <line class="axis" x1="0" x2="97" ng-attr-y1="{{origin.y}}" ng-attr-y2="{{origin.y}}" />
-    <path class="arrow" ng-attr-d="M97 {{origin.y-1}}l3 1-3 1z" />
-    <text class="plot-mark major" x="95" ng-attr-y="{{origin.y+2}}" text-anchor="middle" dominant-baseline="hanging">X</text>
-    <g class="tick-group">
-      <line class="tick" ng-attr-x1="{{origin.x + unit.x*1}}" ng-attr-x2="{{origin.x + unit.x*1}}" ng-attr-y1="{{origin.y-1}}" ng-attr-y2="{{origin.y+1}}" />
-      <text class="plot-mark" ng-attr-x="{{origin.x + unit.x*1}}" ng-attr-y="{{origin.y+2}}" text-anchor="middle" dominant-baseline="hanging" ng-bind="1"></text>
+<svg class="linear-graph" preserveAspectRatio="xMidYMid meet" ng-attr-view_box="{{graph.viewBox.toString()}}">
+  <g class="axis-group ox" ng-if="graph.viewBox.y <= 0 && 0 <= graph.viewBox.maxY">
+    <line class="axis" ng-attr-x1="{{graph.viewBox.x}}" y1="0" ng-attr-x2="{{graph.viewBox.maxX-3}}" y2="0"/>
+    <path class="arrow" ng-attr-d="M{{graph.viewBox.maxX-3}}-1l3 1-3 1z" />
+    <text class="plot-mark major" ng-attr-x="{{graph.viewBox.maxX-5}}" y="2" text-anchor="middle" dominant-baseline="hanging">X</text>
+    <g class="tick-group" ng-repeat="tick in graph.ticksX" ng-init="point=graph.computePoint(tick, 0)">
+      <line class="tick" ng-attr-x1="{{point.x}}" y1="-1" ng-attr-x2="{{point.x}}" y2="1" />
+      <text class="plot-mark" ng-attr-x="{{point.x}}" y="2" text-anchor="middle" dominant-baseline="hanging" ng-bind="tick"></text>
     </g>
   </g>
-  <g class="axis-group oy">
-    <line class="axis" y1="3" y2="100" ng-attr-x1="{{origin.x}}" ng-attr-x2="{{origin.x}}" />
-    <path class="arrow" ng-attr-d="M{{origin.x-1}} 3l1-3 1 3z" />
-    <text class="plot-mark major" ng-attr-x="{{origin.x-2}}" y="5" text-anchor="end" dominant-baseline="middle">Y</text>
-    <g class="tick-group">
-      <line class="tick" ng-attr-x1="{{origin.x-1}}" ng-attr-x2="{{origin.x+1}}" ng-attr-y1="{{origin.y - unit.y*1}}" ng-attr-y2="{{origin.y - unit.y*1}}" />
-      <text class="plot-mark" ng-attr-x="{{origin.x-2}}" ng-attr-y="{{origin.y - unit.y*1}}" text-anchor="end" dominant-baseline="middle" ng-bind="1"></text>
+  <g class="axis-group oy" ng-if="graph.viewBox.x <= 0 && 0 <= graph.viewBox.maxX">
+    <line class="axis"  x1="0" ng-attr-y1="{{graph.viewBox.y+3}}" x2="0" ng-attr-y2="{{graph.viewBox.maxY}}"/>
+    <path class="arrow" ng-attr-d="M-1 {{graph.viewBox.y+3}}l1-3 1 3z" />
+    <text class="plot-mark major" x="-2" ng-attr-y="{{graph.viewBox.y+5}}" text-anchor="end" dominant-baseline="middle">Y</text>
+    <g class="tick-group" ng-repeat="tick in graph.ticksY" ng-init="point=graph.computePoint(0, tick)">
+      <line class="tick" x1="-1" ng-attr-y1="{{point.y}}" x2="1" ng-attr-y2="{{point.y}}" />
+      <text class="plot-mark" x="-2" ng-attr-y="{{point.y}}" text-anchor="end" dominant-baseline="middle" ng-bind="tick"></text>
     </g>  
   </g>
-  <text class="plot-mark major" ng-attr-x="{{origin.x-2}}" ng-attr-y="{{origin.y+2}}" text-anchor="end" dominant-baseline="hanging">0</text>
-  <path class="graph" ng-attr-d="{{points | svgPath}}" fill="none" stroke="red" />
+  <text class="plot-mark major" x="-2" y="2" text-anchor="end" dominant-baseline="hanging">0</text>
+  <path class="graph" ng-attr-d="{{graph.points | svgPath}}" fill="none" stroke="red" />
 </svg>
