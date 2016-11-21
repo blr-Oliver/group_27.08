@@ -89,10 +89,6 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
   };
 }]).filter('svgPath', function(){
   return function(points){
-    if(!points || !points.length)
-      return "";
-    return "M" + points[0].x + " " + points[0].y + "L" + points.slice(1).map(function(p){
-      return p.x + " " + p.y;
-    }).join(" ");
+    return "M-15-70Q-12.5-50-10-35Q-7.5-20-5-10Q-2.5 0 0 5Q2.5 10 5 10Q7.5 10 10 5T15-10";
   };
 })
