@@ -63,7 +63,9 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       return [-1, 1];
     },
     computeViewBox: function(rangeX, rangeY){
-      return new Rect(-20, -80, 40, 100);
+      var topLeft = this.computePoint(rangeX[0],rangeY[1]);
+      var bottomRight = this.computePoint(rangeX[1],rangeY[0]);
+      return Rect.fromRange(topLeft.x, bottomRight.x, topLeft.y, bottomRight.y);
     },
     computePoints: function(seriesX, seriesY){
       return [{x:-15,y:-70},{x:-10,y:-35},{x:-5,y:-10},{x:0,y:5},{x:5,y:10},{x:10,y:5},{x:15,y:-10}];
