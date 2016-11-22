@@ -47,8 +47,6 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       var rangeX, rangeY;
       rangeX = this.computeScaledRange(this.bounds.x, this.bounds.maxX, this.unit.x);
       rangeY = this.computeScaledRange(this.bounds.y, this.bounds.maxY, this.unit.y);
-      rangeX = [-2.0, 2.0];
-      rangeY = [-1.0, 7.0];
       this.ticksX = [-1.0, 1.0];
       this.ticksY = [-1.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0];
       this.viewBox = this.computeViewBox(rangeX, rangeY);
