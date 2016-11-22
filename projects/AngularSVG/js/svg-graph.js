@@ -61,6 +61,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       var maxY = Math.max.apply(null, seriesY);      
       return Rect.fromRange(minX, maxX, minY, maxY);
     },
+    //
     computeOptimalUnit: function(min, max){
       var interval = max - min;
       var k = Math.ceil(Math.log10(interval)) - 1;
