@@ -44,19 +44,18 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
           x: this.computeOptimalUnit(this.bounds.x, this.bounds.maxX),
           y: this.computeOptimalUnit(this.bounds.y, this.bounds.maxY)
       }
-      var rangeX, rangeY;
-      rangeX = this.computeScaledRange(this.bounds.x, this.bounds.maxX, this.unit.x);
-      rangeY = this.computeScaledRange(this.bounds.y, this.bounds.maxY, this.unit.y);
+      this.rangeX = this.computeScaledRange(this.bounds.x, this.bounds.maxX, this.unit.x);
+      this.rangeY = this.computeScaledRange(this.bounds.y, this.bounds.maxY, this.unit.y);
       this.ticksX = [-1.0, 1.0];
       this.ticksY = [-1.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0];
-      this.viewBox = this.computeViewBox(rangeX, rangeY);
+      this.viewBox = this.computeViewBox(this.rangeX, this.rangeY);
       this.points = this.computePoints(seriesX, seriesY);
     },
     computeDataBounds: function(seriesX, seriesY){
-      var minX = Math.min(...seriesX);  
-      var maxX = Math.max(...seriesX);
-      var minY = Math.min(...seriesY);
-      var maxY = Math.max(...seriesY);     
+      var minX = Math.min.apply(null, seriesX);  
+      var maxX = Math.max.apply(null, seriesX);
+      var minY = Math.min.apply(null, seriesY);
+      var maxY = Math.max.apply(null, seriesY);      
       return Rect.fromRange(minX, maxX, minY, maxY);
     },
     //
@@ -69,7 +68,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       return unit;
     },
     computeScaledRange: function(min, max, unit){
-  	 return [Math.floor(min/unit - 0.5)*unit, Math.ceil(max/unit + 0.5)*unit];
+     return [Math.floor(min/unit - 0.5)*unit, Math.ceil(max/unit + 0.5)*unit];
     },
     
     computeViewBox: function(rangeX, rangeY){
@@ -115,5 +114,12 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       pathString += "L" + points[i].x + " " + points[i].y;
     }
     return pathString;
+  };
+}).filter("ticks", function(){
+  return function(range, unit){
+    var start = range[0], end = range[1], result = [];
+    while((start += unit) < end)
+      if(start) result.push(start);
+    return result;
   };
 })
