@@ -30,7 +30,8 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     this.points = [];
     
     var updater = function(newValue){
-      this.update($scope.seriesX, $scope.seriesY);
+      if(newValue && newValue.length)
+        this.update($scope.seriesX, $scope.seriesY);
     }.bind(this);
     
     $scope.$watchCollection('seriesX', updater);
@@ -72,13 +73,22 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       return Rect.fromRange(topLeft.x, bottomRight.x, topLeft.y, bottomRight.y);
     },
     computePoints: function(seriesX, seriesY){
-      return [{x:-15,y:-70},{x:-10,y:-35},{x:-5,y:-10},{x:0,y:5},{x:5,y:10},{x:10,y:5},{x:15,y:-10}];
+     var arr=[];
+      for (i = 0; i < seriesX.length; i++){
+        arr.push(this.computePoint(seriesX[i], seriesY[i]));
+      }
+      return arr;
+      /*return [{x:-15,y:-70},{x:-10,y:-35},{x:-5,y:-10},{x:0,y:5},{x:5,y:10},{x:10,y:5},{x:15,y:-10}];*/
     },
     computePoint: function(x, y){
       return {
+        x: x / this.unit.x * UPU,
+        y: -y / this.unit.y * UPU
+      };
+      /*return {
         x: x * 10,
         y: -y * 10
-      };
+      };*/
     }
   };
   return {
