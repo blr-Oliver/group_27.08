@@ -1,0 +1,25 @@
+.container {
+	padding-top: 20px;
+}
+
+.thumbnail{
+	max-height: 540px;
+	display: none;
+	background: rgba(220,220,220,0.3);
+}
+
+.caption{
+	background: rgba(0,0,0,0.1);
+}
+
+img{
+	min-height: 250px;
+	background-position: center center;
+	background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.text-content{
+	text-align: center;
+	color: white;
+}
