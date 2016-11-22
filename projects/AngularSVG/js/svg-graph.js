@@ -65,18 +65,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       return 1.0;
     },
     computeScaledRange: function(min, max, unit){
-  	  var arr = [];
-  	  if (min<0){
-  	  	arr[0] = Math.floor(min/unit)*unit;
-  	  }else{
-  	  	arr[0] = Math.floor(min/unit)*unit;
-  	  };
-  	  if (max<0){
-  	  	arr[1] = Math.ceil(max/unit)*unit;
-  	  }else{
-  	  	arr[1] = Math.ceil(max/unit)*unit;
-  	  };
-      return arr;
+  	 return [Math.floor(min/unit - 0.5)*unit, Math.ceil(max/unit + 0.5)*unit];
     },
     
     computeViewBox: function(rangeX, rangeY){
