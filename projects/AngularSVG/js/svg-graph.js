@@ -53,10 +53,10 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       this.points = this.computePoints(seriesX, seriesY);
     },
     computeDataBounds: function(seriesX, seriesY){
-      var minX = Math.min.apply(null, seriesX);  
-      var maxX = Math.max.apply(null, seriesX);
-      var minY = Math.min.apply(null, seriesY);
-      var maxY = Math.max.apply(null, seriesY);      
+      var minX = Math.min(...seriesX);  
+      var maxX = Math.max(...seriesX);
+      var minY = Math.min(...seriesY);
+      var maxY = Math.max(...seriesY);     
       return Rect.fromRange(minX, maxX, minY, maxY);
     },
     //
