@@ -89,6 +89,10 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
   };
 }]).filter('svgPath', function(){
   return function(points){
-    return "M-15-70Q-12.5-50-10-35Q-7.5-20-5-10Q-2.5 0 0 5Q2.5 10 5 10Q7.5 10 10 5T15-10";
+    var pathString = "M-" + points[0].x + "-" + points[0].y;
+    for (var i = 1; i < points.length; i++){
+      pathString += "L-" + points[i].x + "-" + points[i].y;
+    }
+    return pathString;
   };
 })
