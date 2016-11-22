@@ -62,7 +62,12 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       return Rect.fromRange(minX, maxX, minY, maxY);
     },
     computeOptimalUnit: function(min, max){
-      return 1.0;
+      var interval = max - min;
+      var k = Math.ceil(Math.log10(interval)) - 1;
+      var unit = Math.pow(10,k);
+      if(unit*5 > interval) unit /= 2;
+      if(unit*5 > interval) unit /= 2.5;
+      return unit;
     },
     computeScaledRange: function(min, max, unit){
   	 return [Math.floor(min/unit - 0.5)*unit, Math.ceil(max/unit + 0.5)*unit];
