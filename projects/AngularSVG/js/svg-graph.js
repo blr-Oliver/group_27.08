@@ -109,6 +109,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
   };
 }]).filter('svgPath', function(){
   return function(points){
+    if(!points || !points.length) return '';
     var pathString = "M" + points[0].x + " " + points[0].y;
     for (var i = 1; i < points.length; i++){
       pathString += "L" + points[i].x + " " + points[i].y;
