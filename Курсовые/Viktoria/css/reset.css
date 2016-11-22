@@ -1,0 +1,42 @@
+html,body,h1,h2,h3,h4,h5,h6,p,em,strong, a,div,span,pre,hr,br,b,i,sub,sup,big,small,tt,table,tr,thead,tbody,tfoot,col,colgroup,form,input,label,texarea,button,
+fieldset,legend,select,ul,ol,li,dl,dt,dd,code,var,img,object,param,map,area {
+	padding:0;
+	margin:0;
+	border:none;
+}
+h1, h2, h3, h4, h5, h6, p, td, th {
+	font-size:1em;
+	font-weight:normal;
+}
+a:link,a:visited, a:hover, a:active{
+	cursor: pointer;
+	cursor: hand;
+        text-decoration:  none;
+}
+:-moz-any-link:focus, input {outline: none;}
+a img {	border: none;}
+table, td ,tr ,th{
+	border-collapse:collapse;
+	border:none;
+}
+ul,li {
+	list-style: none;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+ol li {list-style-type:decimal;}
+
+input, select, textarea {
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+*, *:hover, *:focus, *:active {
+        outline: none;
+}
