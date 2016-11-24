@@ -1,0 +1,14 @@
+[{
+    "name": "First test",
+    "sizeX": 10,
+    "sizeY": 10,
+    "author": "2l8",
+    "complexity": "Easy"
+},
+{
+    "name": "Second test",
+    "sizeX": 10,
+    "sizeY": 10,
+    "author": "2l8",
+    "complexity": "Easy"
+}]

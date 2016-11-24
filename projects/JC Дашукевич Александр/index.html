@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Japanese crosswords</title>
+    <link rel="shortcut icon" href="images/shortcut.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+</head>
+<body>
+  <header>
+      <h1>Japanese crosswords</h1>
+      <button id="goToRegistrationButton" class="backendButton block">Registration</button>
+      <div id="logoutTemplate" class="hidden">
+        <button id="logoutButton" class="backendButton">Log out</button>
+        <p id="playerName">Player Name</p>        <! 17 sibols >
+      </div>
+  </header>
+  <div id="main" class="mainTemplate block">
+      <form action="">
+          <label for="">Login<input type="text" id="login" class="templateInput"></label>
+          <label for="">Password<input type="password" id="password" class="templateInput"></label>
+          <button id="loginButton" class="backendButton">Log In</button>
+      </form>
+      <hr>
+      <div id="underFormButtons">
+          <button id="goToSolvingButton" class="middleButton">Solve crossword</button>
+          <button id="goToCreatingButton" class="middleButton">Create crossword</button>
+          <button id="goToSettingsButton" class="middleButton">Settings</button>
+      </div>
+  </div>
+  <div id="solving" class="mainTemplate hidden">
+      <button class="backButton middleButton">Back</button>
+      <div id="dropdownWrapper">
+         <span id="dropdownButton">Sort by</span>
+         <ul id="showList" class="hidden">
+             <li id="sortByComplexity">Complexity</li>
+             <li id="sortByDate">Date of creation</li>
+         </ul>
+      </div>
+      <hr>
+      <div id="crosswordsList">
+        <!--<ul class="crosswordStringTemplate">
+            <li class="name"></li>
+            <li class="author"></li>
+            <li class="size"></li>
+            <li class="complexity"></li>
+         </ul>-->
+      </div>
+  </div>
+  <div id="settings" class="hidden mainTemplate">
+      <button class="backButton middleButton">Back</button>
+      <p>Empty for now</p>
+            <label>First<input type="radio" name="item" value="first" id="first"></label>
+            <label>Second<input type="radio" name="item" value="second" id="second"></label>
+            <label>Third<input type="radio" name="item" value="third" id="third"></label>
+            <button id="recall">Recall</button>
+            <button id="clearStorage">Clear storage</button>
+            <div id="outputValue" style="width: 100%;">
+            </div>
+  </div>
+  <div id="creating" class="hidden mainTemplate">
+      <button class="backButton middleButton">Back</button>
+      <form action="">
+          <label class="registrationInput">Number of strings<input type="text" id="rows" class="templateInput"></label>
+          <label class="registrationInput">Number of columns<input type="text" id="cols" class="templateInput"></label>
+          <button id="createButton" class="middleButton">Create</button>
+      </form>
+  </div>
+  <div id="registration" class="hidden mainTemplate">
+      <button class="backButton middleButton">Back</button>
+      <form action="">
+          <label class="registrationInput">Login<input type="text" id="createLogin" class="templateInput"></label>
+          <label class="registrationInput">Password<input type="password" id="createPassword" class="templateInput"></label>
+          <label class="registrationInput">Confirm password<input type="password" id="confirmPassword" class="templateInput"></label>
+          <button id="submitRegistration" class="middleButton">Submit</button>
+      </form>
+  </div>
+  <footer>
+      <p>Created by Dashukevich Alexander</p>
+  </footer>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
