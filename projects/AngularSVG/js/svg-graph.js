@@ -8,6 +8,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     this.width = width;
     this.height = height;
   }
+
   Rect.prototype = {
     get maxX(){
       return this.x + this.width;
@@ -19,6 +20,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       return [this.x, this.y, this.width, this.height].join(" ");
     }
   }
+
   Rect.fromRange = function(minX, maxX, minY, maxY){
     return new Rect(minX, minY, maxX - minX, maxY - minY);
   }
@@ -31,31 +33,52 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     
     var updater = function(newValue){
       if(newValue && newValue.length)
-        this.update($scope.seriesX, $scope.seriesY);
+        this.update($scope.series);
     }.bind(this);
-    
+
+    // TODO!!!!!!
+
     $scope.$watchCollection('seriesX', updater);
     $scope.$watchCollection('seriesY', updater);
+
+
   }
   LinearGraphController.prototype = {
-    update: function(seriesX, seriesY){
-      this.bounds = this.computeDataBounds(seriesX, seriesY);
+    update: function(dataInfo){
+      this.bounds = this.computeDataBounds(dataInfo);
+      console.log(this.bounds);
       this.unit = {
           x: this.computeOptimalUnit(this.bounds.x, this.bounds.maxX),
           y: this.computeOptimalUnit(this.bounds.y, this.bounds.maxY)
       }
       this.rangeX = this.computeScaledRange(this.bounds.x, this.bounds.maxX, this.unit.x);
       this.rangeY = this.computeScaledRange(this.bounds.y, this.bounds.maxY, this.unit.y);
-      this.ticksX = [-1.0, 1.0];
-      this.ticksY = [-1.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0];
       this.viewBox = this.computeViewBox(this.rangeX, this.rangeY);
-      this.points = this.computePoints(seriesX, seriesY);
+      this.points = this.computePoints(dataInfo);
+      console.log(this.points);
     },
-    computeDataBounds: function(seriesX, seriesY){
-      var minX = Math.min.apply(null, seriesX);  
-      var maxX = Math.max.apply(null, seriesX);
-      var minY = Math.min.apply(null, seriesY);
-      var maxY = Math.max.apply(null, seriesY);      
+    computeDataBounds: function(dataInfo) {
+      var names = Object.keys(dataInfo);
+      var minX = Math.min(...names.map(function(key) {
+        return Math.min(...dataInfo[key].x);
+      }));
+      
+      var maxX = Math.max(...names.map(function(key) {
+        return Math.max(...dataInfo[key].x);
+      }));
+
+      var maxY = Math.max(...names.map(function(key) {
+        return Math.max(...dataInfo[key].y);
+      }));
+
+      var minY = Math.min(...names.map(function(key) {
+        return Math.min(...dataInfo[key].y);
+      }));
+
+      // var minX = Math.min.apply(null, seriesX);  
+      // var maxX = Math.max.apply(null, seriesX);
+      // var minY = Math.min.apply(null, seriesY);
+      // var maxY = Math.max.apply(null, seriesY);      
       return Rect.fromRange(minX, maxX, minY, maxY);
     },
     //
@@ -67,6 +90,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       if(unit*5 > interval) unit /= 2.5;
       return unit;
     },
+
     computeScaledRange: function(min, max, unit){
      return [Math.floor(min/unit - 0.5)*unit, Math.ceil(max/unit + 0.5)*unit];
     },
@@ -76,14 +100,17 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       var bottomRight = this.computePoint(rangeX[1],rangeY[0]);
       return Rect.fromRange(topLeft.x, bottomRight.x, topLeft.y, bottomRight.y);
     },
-    computePoints: function(seriesX, seriesY){
-     var arr=[];
-      for (i = 0; i < seriesX.length; i++){
-        arr.push(this.computePoint(seriesX[i], seriesY[i]));
-      }
-      return arr;
+
+    computePoints: function(dataInfo){
+     return Object.keys(dataInfo).map( function(key) {
+        var data = dataInfo[key];
+        return data.x.map(function(e, i) {
+          return this.computePoint(e, data.y[i]);
+        }, this); 
+     }, this);
       /*return [{x:-15,y:-70},{x:-10,y:-35},{x:-5,y:-10},{x:0,y:5},{x:5,y:10},{x:10,y:5},{x:15,y:-10}];*/
     },
+
     computePoint: function(x, y){
       return {
         x: x / this.unit.x * UPU,
@@ -95,6 +122,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       };*/
     }
   };
+
   return {
     templateUrl: "/linear-graph.html",
     controller: ["$scope", LinearGraphController],
@@ -105,22 +133,28 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     restrict: "E",
     controllerAs: "graph",
     bindToController: false,
-    link: function($scope, $element, $attrs){}
+    link: function($scope, $element, $attrs){
+      $scope.series = {"default":{"x":[-1.5,-1,-0.5,0,0.5,1,1.5],"y":[7,3.5,1,-0.5,-1,-0.5,1]},"series":{"x":[-1,2.5],"y":[-1,2.5]}};
+    }
   };
 }]).filter('svgPath', function(){
   return function(points){
-    if(!points || !points.length) return '';
     var pathString = "M" + points[0].x + " " + points[0].y;
     for (var i = 1; i < points.length; i++){
       pathString += "L" + points[i].x + " " + points[i].y;
     }
     return pathString;
   };
-}).filter("ticks", function(){
-  return function(range, unit){
-    var start = range[0], end = range[1], result = [];
-    while((start += unit) < end)
-      if(start) result.push(start);
+}).filter('ticks', function() {
+  return function(range, unit) {
+    var start = range[0];
+    var end = range[1];
+    var result = [];
+
+    while( (start += unit) < end ) {
+      if(start) result.push(start)
+    }
+
     return result;
   };
 })
