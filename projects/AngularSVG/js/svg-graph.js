@@ -122,7 +122,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
       };*/
     }
   };
-
+  const matcher = /^series(\w+)[XY]$/, parser = /^.*series-(\w+)-([xy])$/;
   return {
     templateUrl: "/linear-graph.html",
     controller: ["$scope", LinearGraphController],
@@ -134,7 +134,29 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     controllerAs: "graph",
     bindToController: false,
     link: function($scope, $element, $attrs){
-      $scope.series = {"default":{"x":[-1.5,-1,-0.5,0,0.5,1,1.5],"y":[7,3.5,1,-0.5,-1,-0.5,1]},"series":{"x":[-1,2.5],"y":[-1,2.5]}};
+      if($scope.series) return;
+      if($scope.seriesX && $scope.seriesY) {
+        $scope.$watchGroup(['seriesX','seriesY'], function(){
+          $scope.series = {
+            default: {
+              x: $scope.seriesX,
+              y: $scope.seriesY
+            }
+          };
+        });
+      } else {
+        var dataInfo = {};
+        for(var match in $attrs){
+          if (matcher.test(match)) {
+            var parsed = parser.exec($attrs.$attr[match]);
+            var key = parsed[1];
+            var subKey = parsed[2];
+            dataInfo[key] = dataInfo[key] || {};
+            dataInfo[key][subKey] = $scope.$parent.$eval($attrs[match]);
+          }
+        }
+        $scope.series = dataInfo;
+      }
     }
   };
 }]).filter('svgPath', function(){
