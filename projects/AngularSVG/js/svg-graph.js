@@ -32,15 +32,13 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     this.points = [];
     
     var updater = function(newValue){
-      if(newValue && newValue.length)
+      if(newValue)
         this.update($scope.series);
     }.bind(this);
 
     // TODO!!!!!!
 
-    $scope.$watchCollection('seriesX', updater);
-    $scope.$watchCollection('seriesY', updater);
-
+    $scope.$watch('series', updater, true);
 
   }
   LinearGraphController.prototype = {
@@ -127,8 +125,9 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
     templateUrl: "/linear-graph.html",
     controller: ["$scope", LinearGraphController],
     scope: {
-      seriesX: "=",
-      seriesY: "="
+      seriesX: "=?",
+      seriesY: "=?",
+      series: "=?"
     },
     restrict: "E",
     controllerAs: "graph",
@@ -156,6 +155,7 @@ angular.module("svgGraph", []).directive("linearGraph", [function(){
           }
         }
         $scope.series = dataInfo;
+        console.log($scope.series);
       }
     }
   };
