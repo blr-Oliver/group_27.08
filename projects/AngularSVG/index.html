@@ -16,12 +16,10 @@
 * {
   text-align: center;
 }
-
 #demo {
   display: inline-block;
   text-align: center;
 }
-
 #demo svg {
   width: 200px;
 }
@@ -29,7 +27,7 @@
 </head>
 <body ng-app="graphDemo" ng-controller="GraphDemoController as demo">
   <div>
-    <linear-graph id="demo" series-x="xData" series-y="yData"></linear-graph>
+    <linear-graph id="demo" series-data-x="xData" series-data1-x="xData1"  series-data-y="yData" series-data1-y="yData1"></linear-graph>
   </div>
 </body>
 </html>
