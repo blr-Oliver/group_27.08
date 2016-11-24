@@ -18,5 +18,5 @@
     </g>  
   </g>
   <text class="plot-mark major" x="-2" y="2" text-anchor="end" dominant-baseline="hanging">0</text>
-  <path class="graph" ng-attr-d="{{graph.points | svgPath}}" fill="none" stroke="red" />
+  <path ng-repeat="path in graph.points" class="graph" ng-attr-d="{{path | svgPath}}" fill="none" stroke="red" />
 </svg>
