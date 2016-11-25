@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Coursework</title>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+
+<body>
+	<div class="first-screen">
+		<div class="name">
+						
+		</div>
+		<div class="button">
+			Начать игру
+		</div>
+	</div>
+	<div class="main" id="startGame">
+		<div class="inputName">
+			Ваше имя: <input type="text" id="userName" placeholder="Введите Ваше имя" />
+		</div>
+		<div class="choise-text">
+			Выбор текста:
+			<select name ="list" id="choise">
+				<option disabled selected> Выберите текст </option>
+				<option value="ru"> Русский </option>
+				<option value="eng"> Английский </option>
+			</select>
+		</div>
+
+		<div class="text"> 
+		</div> 
+		<div class="mistake">
+			<div class="mistakeField"> Исправьте ошибку! </div>
+		</div>
+		<div class="inputField"> 
+			<input type="text" id="ourText" placeholder="Вводите текст" />
+		</div>
+		<div class="segment">
+			<div class="object"></div>
+		</div>
+	</div>
+</body>
+</html>
