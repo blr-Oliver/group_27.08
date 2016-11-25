@@ -1,4 +1,4 @@
-.container1 {
+.map {
     width: 360px;
     height: 600px;
     background: 0 0 url(../img/map1.jpg) no-repeat;
@@ -19,44 +19,47 @@
     border: 2px solid #B64C1C;
 }
 
-body { 
+html { 
     background-image: url(http://www.rabstol.net/uploads/gallery/main/200/rabstol_net_forest_35.jpg);
+    background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 30px;
+    min-height: 100%;
 }
 
-#link1, #link2, #link3, #link4 {
+body {
+    padding-top: 30px;
+    background: inherit;
+}
+
+.spot {
+    position: absolute;
+    display: inline-block;
     width: 10px;
     height: 10px;
-    background: #96938d;
+    background-color: #000;
     border-radius: 5px;
-    display: inline-block;
+}
+
+.spot.highlight {
+    background-color: #b33;
 }
 
 #link1 {
-    position: absolute;
     top: 282px;
     left: 118px;
 }
 
 #link2 {
-    position: absolute;
     top: 62px;
     left: 149px;
 }
 
 #link3 {
-    position: absolute;
     top: 470px;
     left: 173px;
 }
 
 #link4 {
-    position: absolute;
     top: 533px;
     left: 280px;
-}
-
-.clear {
-    clear: both;
 }
