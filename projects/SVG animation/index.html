@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #timer{
+            stroke: green;
+            stroke-width: 8;
+            fill: none;
+            stroke-dasharray: 252 0;
+            stroke-linecap: round;
+            transition-property: stroke-dasharray, stroke;
+            transition-duration: 10s;
+            transition-timing-function: linear;
+        }
+        #timer.active{
+            stroke-dasharray: 0 252;
+            stroke: red;
+        }
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 100 100" width="300px" height="300px">
+        <path id="timer" d="M 50 10 A 40 40 0 0 1 50 90 40 40 0 0 1 50 10" />
+    </svg>
+    <button onclick="document.getElementById('timer').classList.toggle('active')">Run timer</button>
+</body>
+</html>
