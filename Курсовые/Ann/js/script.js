@@ -51,8 +51,8 @@ $(document).ready(function () {
 	   		}
 		}
 		if(inputValue.length == str.length) {
-			alert((new Date())-beginTime);
-			alert(errCount);
+			console.log((new Date())-beginTime);
+			console.log(errCount);
 		}
    }
 });
