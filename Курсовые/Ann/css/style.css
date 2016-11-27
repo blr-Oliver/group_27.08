@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
 *{
 	margin:0;
 	padding: 0;
@@ -83,7 +83,7 @@ select {
 	background:red;
 	position:absolute;
 	top:-5px;
-	/*animation-fill-mode: forwards ;*/
+	transition:left 0.5s ease;
 }
 .mistake {
 	width:80%;
