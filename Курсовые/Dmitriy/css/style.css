@@ -1,0 +1,22 @@
+body{
+	max-width: 1500px;
+    margin: auto;
+}
+
+.img-circle{
+	border-radius: 30%;
+    width: 200px;
+}
+
+#tableDima{
+	width: 100%;
+}
+
+#navbar > ul > li{
+	margin-top: 8px; 
+	margin-left: 8px;
+}
+
+.navbar-nav > li > a{
+	padding: 0px;
+}
