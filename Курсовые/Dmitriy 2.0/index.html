@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/img/favicon.ico"/>
+
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/engine1/jquery.js"></script>
+
+    <script src="/js/js_custom.js"></script>
+
+    <script src="/lightgallery/lightgallery.min.js" type="text/javascript"></script>
+    <script>lightgallery.init({
+      resizeSync: true,
+      duration: 300
+      });</script>
+    
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/engine1/style.css"/>
+    <link href="/lightgallery/skins/snow/style.css" type="text/css" media="screen" rel="stylesheet"/>
+    <title>Наше фото</title>
+  </head>
+  <body>
+  <!-- ПАНЕЛЬ УПРАВЛЕНИЯ-->
+    <nav class="navbar navbar-inverse navbar-top">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Семейный фотоальбом</a>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><input id = "loaderDima" type="file" class="form-control" placeholder=""></li>
+          <li><input id = "nameDima" type="text" class="form-control" placeholder="Ввести описание"></li>
+          <li><input id = "tagsDima" type="text" class="form-control" placeholder="Ввести тег"></li>
+          <li><button id = "loadButtonDima" type="submit" onclick = "handleClickLoadDima()" class="btn btn-default">Загрузить фото Димы</button></li></br>
+
+
+          
+
+          <li><input id = "loaderLena" type="file" class="form-control" placeholder=""></li>
+          <li><input id = "nameLena" type="text" class="form-control" placeholder="Ввести описание"></li>
+          <li><input id = "tagsLena" type="text" class="form-control" placeholder="Ввести тег"></li>
+          <li><button id = "loadButtonLena" type="submit" onclick = "handleClickLoadLena()" class="btn btn-default">Загрузить фото Лены</button></li></br>
+
+
+          <li><input id = "loaderDanila" type="file" class="form-control" placeholder=""></li>
+          <li><input id = "nameDanila" type="text" class="form-control" placeholder="Ввести описание"></li>
+          <li><input id = "tagsDanila" type="text" class="form-control" placeholder="Ввести тег"></li>
+          <li><button id = "loadButtonDanila" type="submit" onclick = "handleClickLoadDanila()" class="btn btn-default">Загрузить фото Дани</button></li>
+          
+
+
+
+          <li><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick ="createTagListDima()" id = "searchTagButtonDima">Выбрать хэштег</button>
+            <ul class="dropdown-menu" id = "ul_drop_tagsDima"></ul>
+          </li>
+          <li><input id = "searchDima" type="text" class="form-control" placeholder="Ввести тег для поиска"></li>
+          <li><button type="submit" id = "searchButtonDima" onclick = "handleClickSearchDima()" class="btn btn-default">Поиск</button></li>
+        
+
+
+
+          <li><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick ="createTagListLena()" id = "searchTagButtonLena">Выбрать хэштег</button>
+            <ul class="dropdown-menu" id = "ul_drop_tagsLena"></ul>
+          </li>
+          <li><input id = "searchLena" type="text" class="form-control" placeholder="Ввести тег для поиска"></li>
+          <li><button type="submit" id = "searchButtonLena" onclick = "handleClickSearchLena()" class="btn btn-default">Поиск</button></li>
+
+
+
+
+
+          <li><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick ="createTagListDanila()" id = "searchTagButtonDanila">Выбрать хэштег</button>
+            <ul class="dropdown-menu" id = "ul_drop_tagsDanila"></ul>
+          </li>
+          <li><input id = "searchDanila" type="text" class="form-control" placeholder="Ввести тег для поиска"></li>
+          <li><button type="submit" id = "searchButtonDanila" onclick = "handleClickSearchDanila()" class="btn btn-default">Поиск</button></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </ul>
+      </div>
+    </nav>
+<!--РАЗДЕЛЫ СО ССЫЛКАМИ НА ФОТОГАЛЕРЕЮ-->
+    <div id = "heading">
+      <div class="col-lg-4 text-center">
+        <img class="img-circle" src="/img/dima.jpg" alt="Generic placeholder image">            
+        <h2>Дима</h2>
+        <p><a class="btn btn-default" href="#" role="button" onclick = "viewDimaPhoto()">Смотреть фото &raquo;</a></p>
+      </div>
+      <div class="col-lg-4 text-center">
+        <img class="img-circle" src="/img/lena.jpg" alt="Generic placeholder image">
+        <h2>Лена</h2>
+        <p><a class="btn btn-default" href="#" role="button" onclick = "viewLenaPhoto()">Смотреть фото &raquo;</a></p>
+      </div>
+      <div class="col-lg-4 text-center">
+        <img class="img-circle" src="/img/danik.jpg" alt="Generic placeholder image">
+        <h2>Даня</h2>
+        <p><a class="btn btn-default" href="#" role="button" onclick = "viewDanilaPhoto()">Смотреть фото &raquo;</a></p>
+      </div>
+    </div>
+<!--КАРУСЕЛЬ-СЛАЙДЕР-->
+    <div id="wowslider-container1">
+      <div class="ws_images">
+        <ul>
+          <li><img src="data1/images/10.jpg" alt="10" title="10" id="wows1_0"/></li>
+          <li><img src="data1/images/11.jpg" alt="11" title="11" id="wows1_1"/></li>
+          <li><img src="data1/images/dsc_0250.jpg" alt="DSC_0250" title="DSC_0250" id="wows1_2"/></li>
+          <li><img src="data1/images/dsc_0421.jpg" alt="DSC_0421" title="DSC_0421" id="wows1_3"/></li>
+          <li><img src="data1/images/dsc_1136_.jpg" alt="DSC_1136 копия" title="DSC_1136 копия" id="wows1_4"/></li>
+          <li><img src="data1/images/dsc_1162_.jpg" alt="DSC_1162 копия" title="DSC_1162 копия" id="wows1_5"/></li>
+          <li><img src="data1/images/dsc_1300_.jpg" alt="DSC_1300 копия" title="DSC_1300 копия" id="wows1_6"/></li>
+          <li><img src="data1/images/dsc_1353_.jpg" alt="DSC_1353 копия" title="DSC_1353 копия" id="wows1_7"/></li>
+          <li><img src="data1/images/dsc_1362_.jpg" alt="DSC_1362 копия" title="DSC_1362 копия" id="wows1_8"/></li>
+          <li><img src="data1/images/dsc_1369_.jpg" alt="DSC_1369 копия" title="DSC_1369 копия" id="wows1_9"/></li>
+          <li><img src="data1/images/dsc_6186_.jpg" alt="DSC_6186 копия" title="DSC_6186 копия" id="wows1_10"/></li>
+          <li><img src="data1/images/dsc_6242_.jpg" alt="DSC_6242 копия" title="DSC_6242 копия" id="wows1_11"/></li>
+        </ul>
+      </div>
+    </div>  
+    <script type="text/javascript" src="engine1/wowslider.js"></script>
+    <script type="text/javascript" src="engine1/script.js"></script>
+  
+
+
+
+      <footer id = "footer">
+        <p class="pull-right"><a href="#">Наверх</a></p>
+        <p>&copy; 2016 Dmitriy Gribanov &middot; <a href="http://vk.com/dimafsk" target="_blank">Я ВКонтакте</a> &middot; e-mail: dimafsk@gmail.com</p>
+      </footer>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

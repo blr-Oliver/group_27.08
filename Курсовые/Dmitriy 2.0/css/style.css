@@ -1,0 +1,47 @@
+body{
+	max-width: 1500px;
+    margin: auto;
+	background-color: #d9af66;
+
+}
+
+.img-circle{
+	border-radius: 30%;
+    width: 200px;
+}
+
+#tableDima{
+	width: 100%;
+}
+
+#navbar > ul > li{
+	margin-top: 8px; 
+	margin-left: 8px;
+}
+
+.navbar-nav > li > a{
+	padding: 0px;
+}
+
+.navbar{
+	margin-bottom: 10px;
+}
+
+
+
+.navbar-nav > li > a {
+    padding: 6px;
+}
+
+.navbar-brand{
+	font-size: 30px;
+	padding: 15px 25px;
+}
+
+@media screen and (min-width: 1350px){
+	
+	.navbar-brand{
+	margin-top: 38px;
+	}
+
+}
