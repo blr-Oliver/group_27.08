@@ -16,7 +16,7 @@
 <body>
 	<div class="first-screen">
 		<div class="name">
-						
+			GameOnline
 		</div>
 		<div class="button">
 			Начать игру
@@ -28,25 +28,51 @@
 		</div>
 		<div class="choise-text">
 			Выбор текста:
-			<select name ="list" id="choise">
+			<select name ="list" id="choise" >
 				<option disabled selected> Выберите текст </option>
 				<option value="ru"> Русский </option>
 				<option value="eng"> Английский </option>
 			</select>
 		</div>
 
-		<div class="text"> 
-
-		</div> 
-		<div class="mistake">
-			<div class="mistakeField"> Исправьте ошибку! </div>
+		<div class="playField-ru">
+			<div class="text1"> </div> 
+			<div class="mistake1">
+				<div class="mistakeField1"> Исправьте ошибку! </div>
+			</div>
+			<div class="inputField1"> 
+				<input type="text" id="ourText1" placeholder="Вводите текст" />
+			</div>
+			<div class="segment1">
+				<div class="object1"></div>
+			</div>
 		</div>
-		<div class="inputField"> 
-			<input type="text" id="ourText" placeholder="Вводите текст" />
+		<div class="playField-eng">
+			<div class="text2"> </div> 
+			<div class="mistake2">
+				<div class="mistakeField2"> Исправьте ошибку! </div>
+			</div>
+			<div class="inputField2"> 
+				<input type="text" id="ourText2" placeholder="Вводите текст" />
+			</div>
+			<div class="segment2">
+				<div class="object2"></div>
+			</div>
 		</div>
-		<div class="segment">
-			<div class="object"></div>
-		</div>
+	</div>
+	<div class="results">
+		<table class="showResults">
+			<thead>
+				<tr>
+					<th> Имя </th>
+					<th> Количество ошибок </th>
+					<th> Время (c) </th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
