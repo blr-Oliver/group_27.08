@@ -2,6 +2,7 @@
 *{
 	margin:0;
 	padding: 0;
+	font-family: 'Century Gothic';
 }
 body {
 	font-size: 25px;
@@ -25,15 +26,30 @@ select {
 	padding:15px;
 }
 .first-screen {
-	background: #16C29D;
+	background: url(../img/head.jpg) #16C29D;
+	/*background: url(../img/head-8.jpg) 50% 100% #16C29D;*/
 	width:100%;
-	height:620px;
+	height:580px;
 }
 .name {
-	padding:105px;
+	padding:85px;
 	font-size: 65px;
 	font-style: italic;
 	text-align:center;
+	color:white;
+	font-weight: bold;
+}
+.name:after {
+	content:'';
+	position:absolute;
+	top:200px;
+	right:0;
+	left:0;
+	width:120px;
+	height:3px;
+	margin: 0 auto;
+	background: #fff;
+	text-transform: uppercase;
 }
 .button {
 	text-align: center;
@@ -59,42 +75,64 @@ select {
 	margin:15px;
 	padding:35px 0px;
 }
-.text {
+.playField-ru,
+.playField-eng {
+	display: none;
+}
+.text1, .text2 {
 	margin:15px;
 }
-.inputField {
+.inputField1, .inputField2 {
 	margin:15px;
 }
-#ourText {
+#ourText1, #ourText2 {
 	width:90%;
 	padding:10px;
 }
-.segment {
+.segment1, .segment2 {
 	width:80%;
-	margin:15px auto;
-	padding:15px;
+	margin:15px;
 	position: relative;
 	height:50px;
 }
-.object {
-	width:20px;
-	height: 20px;
-	border-radius: 50%;
-	background:red;
+.object1, .object2 {
+	background: url(../img/car.png);
+	z-index: 1000;
+	width:100px;
+	height: 50px;
+	/*border-radius: 50%;
+	background:red;*/
 	position:absolute;
-	top:-5px;
-	transition:left 0.5s ease;
+	transition:left 0.1s ease-in;
 }
-.mistake {
+.mistake1, .mistake2 {
 	width:80%;
 	margin:15px auto;
 	padding:15px;
 	height: 65px;
 }
-.mistakeField {
+.mistakeField1, .mistakeField2 {
 	display:none;
 	background: #F78484;
 	width:50%;
 	text-align: center;
 	margin: 0 auto;
+}
+.results {
+	display: none;
+}
+.showResults {
+	width:80%;
+	margin: 20px auto;
+	border: 1px solid black;
+}
+thead {
+	border: 1px solid black;
+	background: #b581b1;
+}
+td, th {
+	text-align: center;
+	padding:5px;
+	border: 1px solid black;
+	width:33%;
 }
