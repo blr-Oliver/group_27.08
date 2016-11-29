@@ -43,6 +43,40 @@ Ball.prototype = {
 	}
 }
 
+function Banjee(k, l, material) {
+	this.k = k;
+	this.position = {
+		x: 50,
+		y: 50
+	};
+	this.l = l;
+	this.material = material;
+}
+
+Banjee.prototype = {
+	completeAcceleration: function(ball) {
+		var acceleration ;
+		var newL = Math.hypot(this.position.x - ball.position.x, this.position.y - ball.position.y);
+		if( this.l >= newL) {
+			return {
+				x: 0,
+				y: 0
+			}
+		} else {
+			acceleration = this.k * (newL - this.l) * (newL - this.l) / (2 * ball.weight);
+			var direction = {
+				x: this.position.x - ball.position.x,
+				y: this.position.y - ball.position.y
+			}
+			direction.x *= acceleration / newL;
+			direction.y *= acceleration / newL;
+
+			return direction;
+		}
+	}
+}
+
+
 function Playground(root) {
 	this.root = $(root);
 	this.ball = new Ball(100);
