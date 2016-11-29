@@ -21,8 +21,8 @@ function Ball(m) {
 
 Ball.prototype = {
 	nextPosition: function(acceleration, dt){
-		this.speed.x=curSpeed.x + this.acceleration.x * dt;
-		this.speed.y=curSpeed.y + this.acceleration.y * dt;
+		this.speed.x=curSpeed.x + acceleration.x * dt;
+		this.speed.y=curSpeed.y + acceleration.y * dt;
 
 		this.position.x=curPos.x + this.speed.x * dt;
 		this.position.y=curPos.y + this.speed.y * dt;
