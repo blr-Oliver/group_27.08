@@ -22,8 +22,8 @@ Ball.prototype = {
 				this.speed.x = -this.speed.x;
 			};
 			if (this.position.y < 0){
-					this.position.y = this.position.y - (0 - this.position.y);
-					this.speed.y = -this.speed.y;
+				this.position.y = this.position.y - (0 - this.position.y);
+				this.speed.y = -this.speed.y;
 			};
 		}
 	}
