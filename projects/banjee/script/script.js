@@ -5,26 +5,23 @@ function Ball(m) {
 		x: 50,
 		y: 50
 	};
+
 	this.speed = {
 		x: 0,
 		y: 0
 	};
-	this.acceleration = {
-		x: 0,
-		y: 0
-	};
-
-	var curPos = this.position;
-	var curSpeed = this.speed;
-	}
+}
 
 Ball.prototype = {
 	nextPosition: function(acceleration, dt){
-		this.speed.x=curSpeed.x + acceleration.x * dt;
-		this.speed.y=curSpeed.y + acceleration.y * dt;
+		this.speed.x=this.speed.x + acceleration.x * dt;
+		this.speed.y=this.speed.y + acceleration.y * dt;
 
-		this.position.x=curPos.x + this.speed.x * dt;
-		this.position.y=curPos.y + this.speed.y * dt;
+		this.position.x = this.position.x + this.speed.x * dt;
+		this.position.y = this.position.y + this.speed.y * dt;
+
+		console.log('curPos', this.position.x, this.position.y);
+		console.log('curSpeed', this.speed.x, this.speed.y);
 	}
 }
 
