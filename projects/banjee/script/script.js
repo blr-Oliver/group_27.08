@@ -83,6 +83,12 @@ function Playground(root) {
 	this.banjee = new Banjee(1, 100, 1000);
 
 	this.root.on('mousemove', this.updateMouse.bind(this));
+	this.lastFrame = performance.now();
+	var self = this;
+	requestAnimationFrame(function frameDrawer(time){
+		self.render(time);
+		requestAnimationFrame(frameDrawer);
+	});
 }
 
 Playground.prototype = {
@@ -105,7 +111,17 @@ Playground.prototype = {
 			'transform':'rotate('+ -alfa+'rad)'
 		});
 	},
-	updateMouse: function(event){}
+	updateMouse: function(event){},
+	render: function(time){
+		const G = 9.8;
+		var dt = time - this.lastFrame;
+		var acceleration = this.banjee.computeAcceleration(this.ball);
+		acceleration.y += G;
+		this.ball.nextPosition(acceleration);
+		this.renderBall();
+		this.renderBanjee();
+		this.lastFrame = time;
+	}
 }
 
 
