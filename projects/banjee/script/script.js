@@ -86,7 +86,10 @@ function Playground(root) {
 }
 
 Playground.prototype = {
-	renderBall: function(){},
+	renderBall: function(){
+		$(".ball").css("left", this.ball.position.x + "%");
+    		$(".ball").css("top", this.ball.position.y + "%");
+	},
 	renderBanjee: function(){
 		var hypot = Math.hypot((this.ball.position.y-this.banjee.position.y),(this.banjee.position.x-this.ball.position.x));
 		var alfa = Math.atan((this.ball.position.y-this.banjee.position.y),(this.banjee.position.x-this.ball.position.x));
@@ -105,12 +108,4 @@ Playground.prototype = {
 	updateMouse: function(event){}
 }
 
-//Изменение координат шарика!
-window.requestAnimationFrame(renderBall());
-
-function renderBall(){
-    $(".ball").css("left", this.ball.position.x + "%");
-    $(".ball").css("top", this.ball.position.y + "%");
-};
-//Конец изменения координат шарика
 
