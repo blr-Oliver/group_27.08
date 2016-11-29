@@ -7,15 +7,15 @@ function Ball(m) {
 	};
 
 	this.speed = {
-		x: 0,
+		x: 0.02,
 		y: 0
 	};
 }
 
 Ball.prototype = {
 	nextPosition: function(acceleration, dt){
-		this.speed.x=this.speed.x + acceleration.x * dt;
-		this.speed.y=this.speed.y + acceleration.y * dt;
+		this.speed.x = this.speed.x + acceleration.x * dt;
+		this.speed.y = this.speed.y + acceleration.y * dt;
 
 		this.position.x = this.position.x + this.speed.x * dt;
 		this.position.y = this.position.y + this.speed.y * dt;
@@ -23,20 +23,20 @@ Ball.prototype = {
 	},
 	handleCollisions: function(){
 			if (this.position.x > 100){
-				this.position.x = this.position.x - (this.position.x - 100);
+				this.position.x = 100 - (this.position.x - 100);
 				this.speed.x = -this.speed.x;
 			};
 			if (this.position.x < 0){
-				this.position.x = this.position.x - (0 - this.position.x);
-				this.speed.y = -this.speed.y;
+				this.position.x = -this.position.x;
+				this.speed.x = -this.speed.x;
 			};
 	
 			if (this.position.y > 100){
-				this.position.y = this.position.y - (this.position.y - 100);
-				this.speed.x = -this.speed.x;
+				this.position.y = 100 - (this.position.y - 100);
+				this.speed.y = -this.speed.y;
 			};
 			if (this.position.y < 0){
-				this.position.y = this.position.y - (0 - this.position.y);
+				this.position.y = -this.position.y;
 				this.speed.y = -this.speed.y;
 			};
 		}
@@ -54,7 +54,7 @@ function Banjee(k, l, material) {
 }
 
 Banjee.prototype = {
-	completeAcceleration: function(ball) {
+	computeAcceleration: function(ball) {
 		var acceleration ;
 		var newL = Math.hypot(this.position.x - ball.position.x, this.position.y - ball.position.y);
 		if( this.l >= newL) {
@@ -79,8 +79,8 @@ Banjee.prototype = {
 
 function Playground(root) {
 	this.root = $(root);
-	this.ball = new Ball(100);
-	this.banjee = new Banjee(1, 100, 1000);
+	this.ball = new Ball(1);
+	this.banjee = new Banjee(0.000001, 20, 100);
 
 	this.root.on('mousemove', this.updateMouse.bind(this));
 	this.lastFrame = performance.now();
@@ -94,21 +94,23 @@ function Playground(root) {
 Playground.prototype = {
 	renderBall: function(){
 		$(".ball").css("left", this.ball.position.x + "%");
-    		$(".ball").css("top", this.ball.position.y + "%");
+    	$(".ball").css("top", this.ball.position.y + "%");
 	},
 	renderBanjee: function(){
-		var hypot = Math.hypot((this.ball.position.y-this.banjee.position.y),(this.banjee.position.x-this.ball.position.x));
-		var alfa = Math.atan((this.ball.position.y-this.banjee.position.y),(this.banjee.position.x-this.ball.position.x));
-		if(alfa < 0){
-			alfa= alfa+Math.PI;
+		var rx = this.ball.position.x - this.banjee.position.x;
+		var ry = this.ball.position.y - this.banjee.position.y;
+		var hypot = Math.hypot(rx, ry);
+		var alfa = Math.atan(ry, rx);
+		if(rx < 0){
+			alfa += Math.PI;
 		}
 		$('#band').css({
-			'width':hypot,
-			'height':this.banjee.material/hypot,
+			'width':hypot + "%",
+			'height': /*this.banjee.material/hypot*/ '2px',
 			'left':this.ball.position.x + '%',
 			'top':this.ball.position.y + '%',
-			'margin-top': (this.banjee.material/hypot)/2,
-			'transform':'rotate('+ -alfa+'rad)'
+			'margin-top': /*(this.banjee.material/hypot)/2*/ '-1px',
+			'transform':'rotate('+ alfa+'rad)'
 		});
 	},
 	updateMouse: function(event){
@@ -116,15 +118,17 @@ Playground.prototype = {
 		this.banjee.position.y = event.offsetY / this.root.height() * 100;
 	},
 	render: function(time){
-		const G = 9.8;
+		const G = 1e-5;
 		var dt = time - this.lastFrame;
 		var acceleration = this.banjee.computeAcceleration(this.ball);
 		acceleration.y += G;
-		this.ball.nextPosition(acceleration);
+		this.ball.nextPosition(acceleration, dt);
 		this.renderBall();
 		this.renderBanjee();
 		this.lastFrame = time;
 	}
 }
 
-new Playground('.playground');
+$(document).ready(function(){
+	new Playground('.wrap');
+})
