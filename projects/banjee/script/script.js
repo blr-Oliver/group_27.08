@@ -27,3 +27,17 @@ Ball.prototype = {
 		this.position.y=curPos.y + this.speed.y * dt;
 	}
 }
+
+function Playground(root) {
+	this.root = $(root);
+	this.ball = new Ball(100);
+	this.banjee = new Banjee(1, 100, 1000);
+
+	this.root.on('mousemove', this.updateMouse.bind(this));
+}
+
+Playground.prototype = {
+	renderBall: function(){},
+	renderBanjee: function(){},
+	updateMouse: function(event){}
+}
