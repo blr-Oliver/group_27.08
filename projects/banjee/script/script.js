@@ -41,7 +41,7 @@ Ball.prototype = {
 			};
 		}
 	}
-}
+
 
 function Banjee(k, l, material) {
 	this.k = k;
