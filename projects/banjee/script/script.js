@@ -1,3 +1,17 @@
+function Ball(m) {
+	this.weight = m;
+
+	this.position = {
+		x: 50,
+		y: 50
+	};
+
+	this.speed = {
+		x: 0,
+		y: 0
+	};
+}
+
 Ball.prototype = {
 	nextPosition: function(acceleration, dt){
 		this.speed.x=this.speed.x + acceleration.x * dt;
