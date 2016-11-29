@@ -1,15 +1,15 @@
 function Ball(m) {
 	this.weight = m;
 
-	this.position ={
+	this.position = {
 		x: 50,
 		y: 50
 	};
-	this.speed ={
+	this.speed = {
 		x: 0,
 		y: 0
 	};
-	this.acceleration{
+	this.acceleration = {
 		x: 0,
 		y: 0
 	};
