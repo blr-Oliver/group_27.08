@@ -1,4 +1,3 @@
-
 *{
 	margin:0;
 	padding: 0;
@@ -24,6 +23,7 @@ select {
 	width:80%;
 	margin:15px auto;
 	padding:15px;
+	display: none;
 }
 .first-screen {
 	background: url(../img/head.jpg) #16C29D;
@@ -66,14 +66,25 @@ select {
 	background: #fff;
 }
 .inputName {
-	margin:15px;
+	width:60%;
+	margin:15px auto;
+	color: #fff;
 }
 #userName {
 	padding:10px;
+	color:black;
+}
+.error {
+	box-shadow: 0 0 10px red !important;
 }
 .choise-text {
+	display: inline-block;
 	margin:15px;
 	padding:35px 0px;
+}
+.button.reset {
+	width:115px;
+	display: none;
 }
 .playField-ru,
 .playField-eng {
@@ -128,7 +139,7 @@ select {
 }
 thead {
 	border: 1px solid black;
-	background: #b581b1;
+	background: #d3c1d2;
 }
 td, th {
 	text-align: center;
