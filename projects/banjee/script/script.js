@@ -111,7 +111,10 @@ Playground.prototype = {
 			'transform':'rotate('+ -alfa+'rad)'
 		});
 	},
-	updateMouse: function(event){},
+	updateMouse: function(event){
+		this.banjee.position.x = event.offsetX / this.root.width() * 100;
+		this.banjee.position.y = event.offsetY / this.root.height() * 100;
+	},
 	render: function(time){
 		const G = 9.8;
 		var dt = time - this.lastFrame;
@@ -124,4 +127,4 @@ Playground.prototype = {
 	}
 }
 
-
+new Playground('.playground');
