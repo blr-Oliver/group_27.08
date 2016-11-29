@@ -16,7 +16,6 @@ function Ball(m) {
 
 	var curPos = this.position;
 	var curSpeed = this.speed;
-	var curAcc = this.acceleration
 	}
 
 Ball.prototype = {
