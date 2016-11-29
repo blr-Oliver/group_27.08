@@ -41,3 +41,13 @@ Playground.prototype = {
 	renderBanjee: function(){},
 	updateMouse: function(event){}
 }
+
+//Изменение координат шарика!
+window.requestAnimationFrame(renderBall());
+
+function renderBall(){
+    $(".ball").css("left", this.ball.position.x + "%");
+    $(".ball").css("top", this.ball.position.y + "%");
+};
+//Конец изменения координат шарика
+
