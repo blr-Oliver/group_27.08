@@ -87,7 +87,21 @@ function Playground(root) {
 
 Playground.prototype = {
 	renderBall: function(){},
-	renderBanjee: function(){},
+	renderBanjee: function(){
+		var hypot = Math.hypot((this.ball.position.y-this.banjee.position.y),(this.banjee.position.x-this.ball.position.x));
+		var alfa = Math.atan((this.ball.position.y-this.banjee.position.y),(this.banjee.position.x-this.ball.position.x));
+		if(alfa < 0){
+			alfa= alfa+Math.PI;
+		}
+		$('#band').css({
+			'width':hypot,
+			'height':this.banjee.material/hypot,
+			'left':this.ball.position.x + '%',
+			'top':this.ball.position.y + '%',
+			'margin-top': (this.banjee.material/hypot)/2,
+			'transform':'rotate('+ -alfa+'rad)'
+		});
+	},
 	updateMouse: function(event){}
 }
 
