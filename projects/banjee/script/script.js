@@ -22,22 +22,23 @@ Ball.prototype = {
 		this.handleCollisions();
 	},
 	handleCollisions: function(){
+			var attenuation = 0.02;
 			if (this.position.x > 100){
 				this.position.x = 100 - (this.position.x - 100);
-				this.speed.x = -this.speed.x;
+				this.speed.x = -(this.speed.x - attenuation);
 			};
 			if (this.position.x < 0){
 				this.position.x = -this.position.x;
-				this.speed.x = -this.speed.x;
+				this.speed.x = -(this.speed.x + attenuation);
 			};
 	
 			if (this.position.y > 100){
 				this.position.y = 100 - (this.position.y - 100);
-				this.speed.y = -this.speed.y;
+				this.speed.y = -(this.speed.y - attenuation);
 			};
 			if (this.position.y < 0){
 				this.position.y = -this.position.y;
-				this.speed.y = -this.speed.y;
+				this.speed.y = - (this.speed.y + attenuation);
 			};
 		}
 	}
@@ -118,7 +119,7 @@ Playground.prototype = {
 		this.banjee.position.y = event.offsetY / this.root.height() * 100;
 	},
 	render: function(time){
-		const G = 1e-5;
+		const G = 1e-4;
 		var dt = time - this.lastFrame;
 		var acceleration = this.banjee.computeAcceleration(this.ball);
 		acceleration.y += G;
