@@ -1,0 +1,63 @@
+.example{
+	display: none;
+}
+
+.container{
+	padding-top: 20px;
+	padding: 2px;
+}
+
+.block-hover-true{
+	padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+	border: solid #FDFFAB;
+	border-width: 0px;
+}
+
+.thumbnail{
+	max-height: 540px;
+	background-color: rgba(239,239,239,0.7);
+	/*margin-bottom: 0px;
+	padding: 2px;
+	margin: 0px;
+*/
+	transition: all 400ms ease-in-out;
+}
+
+.thumbnail:hover{
+	background-color: rgba(217,255,253,1)!important;
+	/*padding-left: 0px;
+	padding-right: 0px;
+	margin-bottom: 4px;*/
+}
+
+.block-hover-true:hover{
+	padding-left: 3px;
+    padding-right: 3px;
+}
+
+.caption{
+	text-align: center;
+	color: white;
+}
+
+.thumbnail img{
+	min-height: 240px;
+	background-position: center center;
+	background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+#pageUp{
+	display: none;
+	width: 50px;
+	position: fixed;
+	bottom: 15px;
+    right: 15px;
+}
+
+#pageUp > a > img{
+	width: 100%;
+}
