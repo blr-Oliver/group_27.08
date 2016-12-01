@@ -22,23 +22,23 @@ Ball.prototype = {
 		this.handleCollisions();
 	},
 	handleCollisions: function(){
-			var attenuation = 0.02;
+			var attenuation = 0.8;
 			if (this.position.x > 100){
 				this.position.x = 100 - (this.position.x - 100);
-				this.speed.x = -(this.speed.x - attenuation);
+				this.speed.x = -(this.speed.x * attenuation);
 			};
 			if (this.position.x < 0){
 				this.position.x = -this.position.x;
-				this.speed.x = -(this.speed.x + attenuation);
+				this.speed.x = -(this.speed.x * attenuation);
 			};
 	
 			if (this.position.y > 100){
 				this.position.y = 100 - (this.position.y - 100);
-				this.speed.y = -(this.speed.y - attenuation);
+				this.speed.y = -(this.speed.y * attenuation);
 			};
 			if (this.position.y < 0){
 				this.position.y = -this.position.y;
-				this.speed.y = - (this.speed.y + attenuation);
+				this.speed.y = - (this.speed.y * attenuation);
 			};
 		}
 	}
