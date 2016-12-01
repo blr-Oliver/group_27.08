@@ -12,7 +12,7 @@ body{
 }
 .wrap{
 	position: relative;
-	width:1000px;
+	width: 800px;
 	height: 800px;
 	margin: 10px;
 }
@@ -30,4 +30,6 @@ body{
 #band{
   position: absolute;
   transform-origin: 0% 50%;
+  background-color: #f80;
+  pointer-events: none;
 }
