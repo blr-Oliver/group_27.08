@@ -22,27 +22,26 @@ Ball.prototype = {
 		this.handleCollisions();
 	},
 	handleCollisions: function(){
-			var attenuation = 0.8;
+			var attenuation = 0.02;
 			if (this.position.x > 100){
 				this.position.x = 100 - (this.position.x - 100);
-				this.speed.x = -(this.speed.x * attenuation);
+				this.speed.x = -(this.speed.x - attenuation);
 			};
 			if (this.position.x < 0){
 				this.position.x = -this.position.x;
-				this.speed.x = -(this.speed.x * attenuation);
+				this.speed.x = -(this.speed.x + attenuation);
 			};
 	
 			if (this.position.y > 100){
 				this.position.y = 100 - (this.position.y - 100);
-				this.speed.y = -(this.speed.y * attenuation);
+				this.speed.y = -(this.speed.y - attenuation);
 			};
 			if (this.position.y < 0){
 				this.position.y = -this.position.y;
-				this.speed.y = - (this.speed.y * attenuation);
+				this.speed.y = - (this.speed.y + attenuation);
 			};
 		}
 	}
-
 
 function Banjee(k, l, material) {
 	this.k = k;
@@ -81,7 +80,7 @@ Banjee.prototype = {
 function Playground(root) {
 	this.root = $(root);
 	this.ball = new Ball(1);
-	this.banjee = new Banjee(0.000001, 20, 100);
+	this.banjee = new Banjee(0.00000005, 20, 10);
 
 	this.root.on('mousemove', this.updateMouse.bind(this));
 	this.lastFrame = performance.now();
@@ -98,20 +97,19 @@ Playground.prototype = {
     	$(".ball").css("top", this.ball.position.y + "%");
 	},
 	renderBanjee: function(){
-		var rx = this.ball.position.x - this.banjee.position.x;
-		var ry = this.ball.position.y - this.banjee.position.y;
+		var rx = this.banjee.position.x - this.ball.position.x;
+		var ry = this.banjee.position.y - this.ball.position.y;
 		var hypot = Math.hypot(rx, ry);
-		var alfa = Math.atan(ry, rx);
-		if(rx < 0){
-			alfa += Math.PI;
-		}
+		var alfa = Math.atan2(ry, rx);
+		var height = Math.min(this.banjee.material/hypot, 0.5);
+
 		$('#band').css({
 			'width':hypot + "%",
-			'height': /*this.banjee.material/hypot*/ '2px',
+			'height': height + '%',
 			'left':this.ball.position.x + '%',
 			'top':this.ball.position.y + '%',
-			'margin-top': /*(this.banjee.material/hypot)/2*/ '-1px',
-			'transform':'rotate('+ alfa+'rad)'
+			'margin-top': -height/2 + '%',
+			'transform': 'rotate(' + alfa + 'rad)'
 		});
 	},
 	updateMouse: function(event){
@@ -119,7 +117,7 @@ Playground.prototype = {
 		this.banjee.position.y = event.offsetY / this.root.height() * 100;
 	},
 	render: function(time){
-		const G = 1e-4;
+		const G = 1e-5;
 		var dt = time - this.lastFrame;
 		var acceleration = this.banjee.computeAcceleration(this.ball);
 		acceleration.y += G;
